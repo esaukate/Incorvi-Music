@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Incorvi Music</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body class="dashboard-page">
+  <div class="container">
+    <header>
+      <div class="logo">
+        <h1>Incorvi Music</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" id="top-tracks-link">Top Tracks</a></li>
+          <li><a href="#" id="top-artists-link">Top Artists</a></li>
+          <li><a href="#" id="playlists-link">Playlists</a></li>
+          <li><a href="#" id="search-link">Search</a></li>
+        </ul>
+      </nav>
+      <div class="user-info">
+        <% if (user && user.images && user.images.length > 0) { %>
+          <img src="<%= user.images[0].url %>" alt="Profile" class="profile-img">
+        <% } else { %>
+          <div class="profile-placeholder"></div>
+        <% } %>
+        <span><%= user.display_name %></span>
+        <a href="/auth/logout" class="logout-btn">Logout</a>
+      </div>
+    </header>
+    
+    <main>
+      <div class="dashboard-container">
+        <!-- Search Section -->
+        <section id="search-section" class="dashboard-section">
+          <h2>Search Music</h2>
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for tracks, artists, or albums...">
+            <button id="search-button" class="btn primary-btn">Search</button>
+          </div>
+          <div class="search-results" id="search-results"></div>
+        </section>
+        
+        <!-- Top Tracks Section -->
+        <section id="top-tracks-section" class="dashboard-section active">
+          <h2>Your Top Tracks</h2>
+          <div class="time-range-selector">
+            <button class="time-range-btn active" data-range="short_term">Last Month</button>
+            <button class="time-range-btn" data-range="medium_term">Last 6 Months</button>
+            <button class="time-range-btn" data-range="long_term">All Time</button>
+          </div>
+          <div class="tracks-container" id="top-tracks-container"></div>
+        </section>
+        
+        <!-- Top Artists Section -->
+        <section id="top-artists-section" class="dashboard-section">
+          <h2>Your Top Artists</h2>
+          <div class="time-range-selector">
+            <button class="time-range-btn active" data-range="short_term">Last Month</button>
+            <button class="time-range-btn" data-range="medium_term">Last 6 Months</button>
+            <button class="time-range-btn" data-range="long_term">All Time</button>
+          </div>
+          <div class="artists-container" id="top-artists-container"></div>
+        </section>
+        
+        <!-- Playlists Section -->
+        <section id="playlists-section" class="dashboard-section">
+          <h2>Your Playlists</h2>
+          <div class="playlists-container" id="playlists-container"></div>
+        </section>
+        
+        <!-- Playlist Detail Section -->
+        <section id="playlist-detail-section" class="dashboard-section">
+          <div class="back-button">
+            <button id="back-to-playlists" class="btn secondary-btn">Back to Playlists</button>
+          </div>
+          <div class="playlist-detail-container" id="playlist-detail-container"></div>
+        </section>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Incorvi Music. Powered by Spotify API.</p>
+    </footer>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
